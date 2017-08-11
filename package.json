@@ -1,0 +1,32 @@
+{
+  "name": "codesnippets",
+  "version": "1.0.0",
+  "description": "code snippet organizer",
+  "main": "app.js",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "chai": "^4.1.1",
+    "express": "^4.15.4",
+    "express-session": "^1.15.5",
+    "express-validator": "^3.2.1",
+    "mongoose": "^4.10.8",
+    "mustache-express": "^1.2.5",
+    "parseurl": "^1.3.1",
+    "supertest": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "NODE_ENV=test mocha tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heymichaelw/codeSnippets.git"
+  },
+  "author": "Michael Waites",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/heymichaelw/codeSnippets/issues"
+  },
+  "homepage": "https://github.com/heymichaelw/codeSnippets#readme"
+}
