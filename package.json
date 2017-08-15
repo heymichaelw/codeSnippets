@@ -25,6 +25,9 @@
   },
   "author": "Michael Waites",
   "license": "ISC",
+  "jshintConfig": {
+    "esversion": 6
+  },
   "bugs": {
     "url": "https://github.com/heymichaelw/codeSnippets/issues"
   },

@@ -4,6 +4,29 @@ const app = require("../app");
 const User = require('../models/user');
 const Snippet = require('../models/snippet');
 const userController = require('../controllers/userController.js');
+const helpers = require('../helpers/helpers.js');
+
+describe("snippet model tests", function(){
+
+  afterEach(function(done){
+    Snippet.deleteMany({}).then(function(){
+      done();
+    });
+  });
+
+  beforeEach(function(done){
+    Snippet.deleteMany({}).then(function(){
+      done();
+    });
+  });
+
+  it("can create a snippet", function(done){
+    var snippet = new Snippet({title: 'test snippet', body: 'this is a test body', notes: ['new test', 'string'], language: 'Java', tags: ['java', 'test'], userId: "599349bd1d836770c38db57b"}).save().then(function(snippet){
+      expect(snippet.title).to.equal('test snippet');
+    });
+    done();
+  });
+});
 
 describe("user model tests", function(){
 
@@ -14,7 +37,7 @@ describe("user model tests", function(){
   });
 
   it("can create a user", function(done){
-    userController.createUser("username", "password").then(function(user){
+    helpers.createUser("username", "password").then(function(user){
       expect(user.username).to.equal("username");
       expect(user.password).to.be.an("object");
       expect(user.password.hash.length).to.equal(344);
@@ -23,8 +46,8 @@ describe("user model tests", function(){
   });
 
   it('can log in and return true if valid login', function(done){
-    userController.createUser("michael", "fredmoo").then(function(user){
-      userController.login("michael", "fredmoo").then(function(result){
+    helpers.createUser("michael", "fredmoo").then(function(user){
+      helpers.login("michael", "fredmoo").then(function(result){
         expect(result).to.equal(true);
         done();
       });
@@ -32,8 +55,8 @@ describe("user model tests", function(){
   });
 
   it('will not login if invalid password', function(done){
-    userController.createUser("michael", "fredmoo").then(function(user){
-      userController.login("michael", "kaminsky").then(function(result){
+    helpers.createUser("michael", "fredmoo").then(function(user){
+      helpers.login("michael", "kaminsky").then(function(result){
         expect(result).to.equal(false);
         done();
       });
@@ -41,8 +64,8 @@ describe("user model tests", function(){
   });
 
   it('will not login if invalid username', function(done){
-    userController.createUser("michael", "fredmoo").then(function(user){
-      userController.login("tommy", "fredmoo").then(function(result){
+    helpers.createUser("michael", "fredmoo").then(function(user){
+      helpers.login("tommy", "fredmoo").then(function(result){
         expect(result).to.equal(false);
         done();
       });
